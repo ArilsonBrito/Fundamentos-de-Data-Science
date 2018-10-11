@@ -69,12 +69,35 @@ assert column_to_list(data_list, -2)[0] == "" and column_to_list(data_list, -2)[
 # -----------------------------------------------------
 
 input("Aperte Enter para continuar...")
+def count_unic_gender(data, index, gender):
+    """
+    Descrição:
+      Esta função conta a quntidade  de ocorrências
+      de gêneros na respectiva coluna de um dataset
+
+    Utilização:
+      funcao(param1, param2, param3)
+
+    Parâmetros:
+      param1
+        O dataset
+      param2
+        Índice da coluna do dataset (6 ou -2)
+      param3
+        O gênero que se deseja contar (M - Masculino, F - Feminino)
+    """
+    count = 0
+    # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
+    for item in data:
+        if (item[index].startswith(gender)):
+            count += 1
+    return count
 # Agora sabemos como acessar as features, vamos contar quantos Male (Masculinos) e Female (Femininos) o dataset tem
 # TAREFA 4
 # TODO: Conte cada gênero. Você não deveria usar uma função para isso.
-male = 0
-female = 0
-
+# -2 equivale a coluna gênero
+male = count_unic_gender(data_list, -2,"M")
+female = count_unic_gender(data_list, -2,"F")
 
 # Verificando o resultado
 print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
