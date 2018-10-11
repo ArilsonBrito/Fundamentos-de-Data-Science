@@ -52,14 +52,14 @@ input("\n\nAperte Enter para continuar...")
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
 def column_to_list(data, index) -> list:
     """
-    Função retornar a lista de uma coluna específica do csv
+    Função retornar a lista de uma coluna específica do csv.
 
     Argumentos:
-      data: A lista de gêneros
-      index: Índice da coluna(poição)
+      data: A lista de gêneros.
+      index: Índice da coluna(poição).
 
     Retorna:
-      Retorna uma lista com os valores da coluna solicitada
+      Retorna uma lista com os valores da coluna solicitada.
     """
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
@@ -81,14 +81,14 @@ input("\n\nAperte Enter para continuar...")
 def count_unic_gender(data, gender) -> int:
     """
     Função para conta a quntidade  de ocorrências
-    de gêneros na lista
+    de gêneros na lista.
 
     Argumentos:
-      data: A lista de gêneros
-      gender: O gênero que se deseja contar (M - Masculino, F - Feminino)
+      data: A lista de gêneros.
+      gender: O gênero que se deseja contar (M - Masculino, F - Feminino).
 
     Retorna:
-      Quantidade total do gênero informado
+      Quantidade total do gênero informado.
     """
     count = 0
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
@@ -121,13 +121,13 @@ def count_gender(data) -> list:
     """
     Descrição:
       Esta função conta a quntidade  de ocorrências
-      de gêneros na respectiva coluna de um dataset
+      de gêneros na respectiva coluna de um dataset.
 
     Argumentos:
-      data: A lista de informações do aquivo csv
+      data: A lista de informações do aquivo csv.
 
     Retorna:
-        Retorna uma lista com a quantidate de gêneros encontrados
+        Retorna uma lista com a quantidate de gêneros encontrados.
     """
 
     male = count_unic_gender(list_genders,"M")
@@ -152,13 +152,13 @@ input("\n\nAperte Enter para continuar...")
 def most_popular_gender(data) -> str:
     """
     Descrição:
-      Esta função valida o número de ocorrências de gêneros
+      Esta função valida o número de ocorrências de gêneros.
 
     Argumentos:
-      data: A lista de informações do aquivo csv
+      data: A lista de informações do aquivo csv.
 
     Retorna:
-        Retorna uma string com o gênero de maior ocorrência
+        Retorna uma string com o gênero de maior ocorrência.
     """
     most_polular = count_gender(data)
     if(most_polular[0] > most_polular[1]):
@@ -217,15 +217,15 @@ def get_trip_duration(data,tipo) -> float:
     """
     Descrição:
       Esta função analisa uma lista de floats e devolve
-      o valor de acordo com o tipo informado
+      o valor de acordo com o tipo informado.
 
     Argumentos:
-      data: A lista duração das viagens
-      tipo: Tipo de informação solicitada
-            0 - Min; 1 - Max; 2 - Media; 3 - Mediana
+      data: A lista duração das viagens.
+      tipo: Tipo de informação solicitada.
+            (0 - Min; 1 - Max; 2 - Media; 3 - Mediana)
 
     Retorna:
-        Retorna o valor de acordo com o tipo de informação solicitada
+        Retorna o valor de acordo com o tipo de informação solicitada.
     """
     retorno = .0
     data = sorted(data)
@@ -293,11 +293,24 @@ input("\n\nAperte Enter para continuar...")
 # TODO: Crie uma função para contar tipos de usuários, sem definir os tipos
 # para que nós possamos usar essa função com outra categoria de dados.
 print("Você vai encarar o desafio? (yes ou no)")
-answer = "no"
+answer = "yes"
 
 def count_items(column_list):
-    item_types = []
+    """
+    Função para contar a quantidade de generos e total de ocorrências
+    de cadas um delesself.
+
+    Argunmento:
+        column_list: Lista dos itens a serem encontrados.
+
+    Retorna:
+        Retorna uma tupla, contendo o item e o total de ocorrências
+        (item_types, count_items).
+    """
+    item_types = set(column_list)
     count_items = []
+    for item in item_types:
+        count_items.append(column_list.count(item))
     return item_types, count_items
 
 
