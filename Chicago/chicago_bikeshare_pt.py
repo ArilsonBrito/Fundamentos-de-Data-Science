@@ -205,12 +205,41 @@ input("\n\nAperte Enter para continuar...")
 # Vamos trabalhar com trip_duration (duração da viagem) agora. Não conseguimos tirar alguns valores dele.
 # TAREFA 9
 # TODO: Ache a duração de viagem Mínima, Máxima, Média, e Mediana.
+def get_trip_duration(data,tipo):
+    """
+    Descrição:
+      Esta função analisa uma lista de floats e devolve
+      o valor de acordo com o tipo informado
+
+    Parâmetros:
+      data: A lista duração das viagens
+      tipo: Tipo de informação solicitada
+            0 - Min; 1 - Max; 2 - Media; 3 - Mediana
+
+    Retono:
+        Retorna o valor de acordo com o tipo de informação solicitada
+    """
+    retorno = .0
+    data = sorted(data)
+    qtde = len(data)
+    total = sum(map(float,data))
+    if (tipo == 0):
+        retorno = data[0]
+    elif (tipo == 1):
+        retorno = data[qtde -1]
+    elif (tipo == 2):
+        retorno = total / qtde
+    elif (tipo == 3):
+        retorno = data[qtde // 2]
+
+    return retorno
+
 # Você não deve usar funções prontas para isso, como max() e min().
-trip_duration_list = column_to_list(data_list, 2)
-min_trip = 0.
-max_trip = 0.
-mean_trip = 0.
-median_trip = 0.
+trip_duration_list = list(map(int,column_to_list(data_list, 2)))
+min_trip = get_trip_duration(trip_duration_list,0)
+max_trip = get_trip_duration(trip_duration_list,1)
+mean_trip = get_trip_duration(trip_duration_list,2)
+median_trip = get_trip_duration(trip_duration_list,3)
 
 
 print("\nTAREFA 9: Imprimindo o mínimo, máximo, média, e mediana")
