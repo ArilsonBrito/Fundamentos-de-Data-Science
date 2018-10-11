@@ -75,9 +75,6 @@ def count_unic_gender(data, index, gender):
       Esta função conta a quntidade  de ocorrências
       de gêneros na respectiva coluna de um dataset
 
-    Utilização:
-      funcao(param1, param2, param3)
-
     Parâmetros:
       param1
         O dataset
@@ -85,6 +82,9 @@ def count_unic_gender(data, index, gender):
         Índice da coluna do dataset (6 ou -2)
       param3
         O gênero que se deseja contar (M - Masculino, F - Feminino)
+
+    Retorno:
+      Quantidade total de gêneros encontrados.
     """
     count = 0
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
