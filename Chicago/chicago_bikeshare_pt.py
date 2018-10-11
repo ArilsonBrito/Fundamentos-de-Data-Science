@@ -40,7 +40,7 @@ data_list = data_list[1:]
 input("Aperte Enter para continuar...")
 # TAREFA 2
 # TODO: Imprima o `gênero` das primeiras 20 linhas
-print("\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
+print("\n\nTAREFA 2: Imprimindo o gênero das primeiras 20 amostras")
 for i, data in enumerate(data_list[:20]):
     print("Linha {}. Gênero: {}".format(i + 1, data[6]))
 
@@ -57,9 +57,8 @@ def column_to_list(data, index):
         column_list.append(item[index])
     return column_list
 
-
 # Vamos checar com os gêneros se isso está funcionando (apenas para os primeiros 20)
-print("\nTAREFA 3: Imprimindo a lista de gêneros das primeiras 20 amostras")
+print("\n\nTAREFA 3: Imprimindo a lista de gêneros das primeiras 20 amostras")
 print(column_to_list(data_list, -2)[:20])
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
@@ -76,15 +75,12 @@ def count_unic_gender(data, index, gender):
       de gêneros na respectiva coluna de um dataset
 
     Parâmetros:
-      param1
-        O dataset
-      param2
-        Índice da coluna do dataset (6 ou -2)
-      param3
-        O gênero que se deseja contar (M - Masculino, F - Feminino)
+      data: A lista de informações do aquivo csv
+      index: Índice da coluna de gêneros
+      gender: O gênero que se deseja contar (M - Masculino, F - Feminino)
 
     Retorno:
-      Quantidade total de gêneros encontrados.
+      Quantidade total do gênero informado
     """
     count = 0
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
@@ -100,7 +96,7 @@ male = count_unic_gender(data_list, -2,"M")
 female = count_unic_gender(data_list, -2,"F")
 
 # Verificando o resultado
-print("\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
+print("\n\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
 print("Masculinos: ", male, "\nFemininos: ", female)
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
@@ -119,12 +115,7 @@ def count_gender(data):
       de gêneros na respectiva coluna de um dataset
 
     Parâmetros:
-      param1
-        O dataset
-      param2
-        Índice da coluna do dataset (6 ou -2)
-      param3
-        O gênero que se deseja contar (M - Masculino, F - Feminino)
+      data: A lista de informações do aquivo csv
 
     Retono:
         Retorna uma lista com a quantidate de gêneros encontrados
@@ -136,7 +127,7 @@ def count_gender(data):
     return [male, female]
 
 
-print("\nTAREFA 5: Imprimindo o resultado de count_gender")
+print("\n\nTAREFA 5: Imprimindo o resultado de count_gender")
 print(count_gender(data_list))
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
@@ -150,12 +141,28 @@ input("Aperte Enter para continuar...")
 # TAREFA 6
 # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
-def most_popular_gender(data_list):
-    answer = ""
+def most_popular_gender(data):
+    """
+    Descrição:
+      Esta função valida o número de ocorrências de gêneros
+
+    Parâmetros:
+      data: A lista de informações do aquivo csv
+
+    Retono:
+        Retorna uma string com o gênero de maior ocorrência
+    """
+    most_polular = count_gender(data)
+    if(most_polular[0] > most_polular[1]):
+        answer = "Male"
+    elif (most_polular[0] < most_polular[1]):
+        answer = "Famele"
+    else:
+        answer = "Equal"
     return answer
 
 
-print("\nTAREFA 6: Qual é o gênero mais popular na lista?")
+print("\n\nTAREFA 6: Qual é o gênero mais popular na lista?")
 print("O gênero mais popular na lista é: ", most_popular_gender(data_list))
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
@@ -178,14 +185,14 @@ plt.show(block=True)
 input("Aperte Enter para continuar...")
 # TAREFA 7
 # TODO: Crie um gráfico similar para user_types. Tenha certeza que a legenda está correta.
-print("\nTAREFA 7: Verifique o gráfico!")
+print("\n\nTAREFA 7: Verifique o gráfico!")
 
 
 input("Aperte Enter para continuar...")
 # TAREFA 8
 # TODO: Responda a seguinte questão
 male, female = count_gender(data_list)
-print("\nTAREFA 8: Por que a condição a seguir é Falsa?")
+print("\n\nTAREFA 8: Por que a condição a seguir é Falsa?")
 print("male + female == len(data_list):", male + female == len(data_list))
 answer = "Escreva sua resposta aqui."
 print("resposta:", answer)
