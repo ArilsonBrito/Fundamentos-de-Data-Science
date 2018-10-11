@@ -112,9 +112,27 @@ input("Aperte Enter para continuar...")
 # TAREFA 5
 # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
-def count_gender(data_list):
-    male = 0
-    female = 0
+def count_gender(data):
+    """
+    Descrição:
+      Esta função conta a quntidade  de ocorrências
+      de gêneros na respectiva coluna de um dataset
+
+    Parâmetros:
+      param1
+        O dataset
+      param2
+        Índice da coluna do dataset (6 ou -2)
+      param3
+        O gênero que se deseja contar (M - Masculino, F - Feminino)
+
+    Retono:
+        Retorna uma lista com a quantidate de gêneros encontrados
+        [Masculino,Feminino]
+    """
+
+    male = count_unic_gender(data,-2,"M")
+    female = count_unic_gender(data,-2,"F")
     return [male, female]
 
 
