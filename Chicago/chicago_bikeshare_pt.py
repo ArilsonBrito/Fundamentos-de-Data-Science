@@ -50,7 +50,17 @@ for i, data in enumerate(data_list[:20]):
 input("\n\nAperte Enter para continuar...")
 # TAREFA 3
 # TODO: Crie uma função para adicionar as colunas(features) de uma lista em outra lista, na mesma ordem
-def column_to_list(data, index):
+def column_to_list(data, index) -> list:
+    """
+    Função retornar a lista de uma coluna específica do csv
+
+    Argumentos:
+      data: A lista de gêneros
+      index: Índice da coluna(poição)
+
+    Retorna:
+      Retorna uma lista com os valores da coluna solicitada
+    """
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
     for item in data:
@@ -68,32 +78,31 @@ assert column_to_list(data_list, -2)[0] == "" and column_to_list(data_list, -2)[
 # -----------------------------------------------------
 
 input("\n\nAperte Enter para continuar...")
-def count_unic_gender(data, index, gender):
+def count_unic_gender(data, gender) -> int:
     """
-    Descrição:
-      Esta função conta a quntidade  de ocorrências
-      de gêneros na respectiva coluna de um dataset
+    Função para conta a quntidade  de ocorrências
+    de gêneros na lista
 
-    Parâmetros:
-      data: A lista de informações do aquivo csv
-      index: Índice da coluna de gêneros
+    Argumentos:
+      data: A lista de gêneros
       gender: O gênero que se deseja contar (M - Masculino, F - Feminino)
 
-    Retorno:
+    Retorna:
       Quantidade total do gênero informado
     """
     count = 0
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
     for item in data:
-        if (item[index].startswith(gender)):
+        if (item.startswith(gender)):
             count += 1
     return count
 # Agora sabemos como acessar as features, vamos contar quantos Male (Masculinos) e Female (Femininos) o dataset tem
 # TAREFA 4
 # TODO: Conte cada gênero. Você não deveria usar uma função para isso.
 # -2 equivale a coluna gênero
-male = count_unic_gender(data_list, -2,"M")
-female = count_unic_gender(data_list, -2,"F")
+list_genders = column_to_list(data_list, -2)
+male = count_unic_gender(list_genders,"M")
+female = count_unic_gender(list_genders,"F")
 
 # Verificando o resultado
 print("\n\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
@@ -108,22 +117,21 @@ input("\n\nAperte Enter para continuar...")
 # TAREFA 5
 # TODO: Crie uma função para contar os gêneros. Retorne uma lista.
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
-def count_gender(data):
+def count_gender(data) -> list:
     """
     Descrição:
       Esta função conta a quntidade  de ocorrências
       de gêneros na respectiva coluna de um dataset
 
-    Parâmetros:
+    Argumentos:
       data: A lista de informações do aquivo csv
 
-    Retono:
+    Retorna:
         Retorna uma lista com a quantidate de gêneros encontrados
-        [Masculino,Feminino]
     """
 
-    male = count_unic_gender(data,-2,"M")
-    female = count_unic_gender(data,-2,"F")
+    male = count_unic_gender(list_genders,"M")
+    female = count_unic_gender(list_genders,"F")
     return [male, female]
 
 
@@ -141,15 +149,15 @@ input("\n\nAperte Enter para continuar...")
 # TAREFA 6
 # TODO: Crie uma função que pegue o gênero mais popular, e retorne este gênero como uma string.
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
-def most_popular_gender(data):
+def most_popular_gender(data) -> str:
     """
     Descrição:
       Esta função valida o número de ocorrências de gêneros
 
-    Parâmetros:
+    Argumentos:
       data: A lista de informações do aquivo csv
 
-    Retono:
+    Retorna:
         Retorna uma string com o gênero de maior ocorrência
     """
     most_polular = count_gender(data)
@@ -205,18 +213,18 @@ input("\n\nAperte Enter para continuar...")
 # Vamos trabalhar com trip_duration (duração da viagem) agora. Não conseguimos tirar alguns valores dele.
 # TAREFA 9
 # TODO: Ache a duração de viagem Mínima, Máxima, Média, e Mediana.
-def get_trip_duration(data,tipo):
+def get_trip_duration(data,tipo) -> float:
     """
     Descrição:
       Esta função analisa uma lista de floats e devolve
       o valor de acordo com o tipo informado
 
-    Parâmetros:
+    Argumentos:
       data: A lista duração das viagens
       tipo: Tipo de informação solicitada
             0 - Min; 1 - Max; 2 - Media; 3 - Mediana
 
-    Retono:
+    Retorna:
         Retorna o valor de acordo com o tipo de informação solicitada
     """
     retorno = .0
@@ -256,7 +264,7 @@ input("\n\nAperte Enter para continuar...")
 # TAREFA 10
 # Gênero é fácil porque nós temos apenas algumas opções. E quanto a start_stations? Quantas opções ele tem?
 # TODO: Verifique quantos tipos de start_stations nós temos, usando set()
-start_stations = set()
+start_stations = set(column_to_list(data_list, 3))
 
 print("\nTAREFA 10: Imprimindo as start stations:")
 print(len(start_stations))
