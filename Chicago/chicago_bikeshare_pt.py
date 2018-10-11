@@ -60,6 +60,7 @@ def column_to_list(data, index) -> list:
 
     Retorna:
       Retorna uma lista com os valores da coluna solicitada.
+
     """
     column_list = []
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
@@ -78,7 +79,7 @@ assert column_to_list(data_list, -2)[0] == "" and column_to_list(data_list, -2)[
 # -----------------------------------------------------
 
 input("\n\nAperte Enter para continuar...")
-def count_unic_gender(data, gender) -> int:
+def count_for_gender(data, gender) -> int:
     """
     Função para conta a quntidade  de ocorrências
     de gêneros na lista.
@@ -89,24 +90,29 @@ def count_unic_gender(data, gender) -> int:
 
     Retorna:
       Quantidade total do gênero informado.
+
     """
+    data = column_to_list(data_list, -2)
     count = 0
     # Dica: Você pode usar um for para iterar sobre as amostras, pegar a feature pelo seu índice, e dar append para uma lista
     for item in data:
-        if (item.startswith(gender)):
+        if (gender == "" or gender == None):
+            if (item == "" or item == None):
+                count += 1
+        elif (item.startswith(gender)):
             count += 1
+
     return count
 # Agora sabemos como acessar as features, vamos contar quantos Male (Masculinos) e Female (Femininos) o dataset tem
 # TAREFA 4
 # TODO: Conte cada gênero. Você não deveria usar uma função para isso.
-# -2 equivale a coluna gênero
-list_genders = column_to_list(data_list, -2)
-male = count_unic_gender(list_genders,"M")
-female = count_unic_gender(list_genders,"F")
+male = count_for_gender(data_list,"M")
+female = count_for_gender(data_list,"F")
 
 # Verificando o resultado
 print("\n\nTAREFA 4: Imprimindo quantos masculinos e femininos nós encontramos")
 print("Masculinos: ", male, "\nFemininos: ", female)
+
 
 # ------------ NÃO MUDE NENHUM CÓDIGO AQUI ------------
 assert male == 935854 and female == 298784, "TAREFA 4: A conta não bate."
@@ -119,19 +125,19 @@ input("\n\nAperte Enter para continuar...")
 # Isso deveria retornar uma lista com [count_male, count_female] (exemplo: [10, 15] significa 10 Masculinos, 15 Femininos)
 def count_gender(data) -> list:
     """
-    Descrição:
-      Esta função conta a quntidade  de ocorrências
-      de gêneros na respectiva coluna de um dataset.
+    Função para contar as ocorrências de gêneros.
 
     Argumentos:
       data: A lista de informações do aquivo csv.
 
     Retorna:
-        Retorna uma lista com a quantidate de gêneros encontrados.
-    """
+        Retorna uma lista com o total de ocorrências para cada gêneros válido.
 
-    male = count_unic_gender(list_genders,"M")
-    female = count_unic_gender(list_genders,"F")
+    """
+    #recuperando apenas a colnuna de gêneros
+    data = column_to_list(data, -2)
+    male = count_for_gender(data,"M")
+    female = count_for_gender(data,"F")
     return [male, female]
 
 
@@ -151,14 +157,14 @@ input("\n\nAperte Enter para continuar...")
 # Esperamos ver "Male", "Female", ou "Equal" como resposta.
 def most_popular_gender(data) -> str:
     """
-    Descrição:
-      Esta função valida o número de ocorrências de gêneros.
+    Função para validar o número de ocorrências de gêneros.
 
     Argumentos:
       data: A lista de informações do aquivo csv.
 
     Retorna:
         Retorna uma string com o gênero de maior ocorrência.
+
     """
     most_polular = count_gender(data)
     if(most_polular[0] > most_polular[1]):
@@ -215,9 +221,8 @@ input("\n\nAperte Enter para continuar...")
 # TODO: Ache a duração de viagem Mínima, Máxima, Média, e Mediana.
 def get_trip_duration(data,tipo) -> float:
     """
-    Descrição:
-      Esta função analisa uma lista de floats e devolve
-      o valor de acordo com o tipo informado.
+    Esta função analisa uma lista de floats e devolve
+    o valor de acordo com o tipo informado.
 
     Argumentos:
       data: A lista duração das viagens.
@@ -226,6 +231,7 @@ def get_trip_duration(data,tipo) -> float:
 
     Retorna:
         Retorna o valor de acordo com o tipo de informação solicitada.
+
     """
     retorno = .0
     data = sorted(data)
@@ -295,22 +301,23 @@ input("\n\nAperte Enter para continuar...")
 print("Você vai encarar o desafio? (yes ou no)")
 answer = "yes"
 
-def count_items(column_list):
+def count_items(data):
     """
     Função para contar a quantidade de generos e total de ocorrências
     de cadas um delesself.
 
     Argunmento:
-        column_list: Lista dos itens a serem encontrados.
+        data: Lista dos itens a serem encontrados.
 
     Retorna:
         Retorna uma tupla, contendo o item e o total de ocorrências
         (item_types, count_items).
+
     """
     item_types = set(column_list)
     count_items = []
     for item in item_types:
-        count_items.append(column_list.count(item))
+        count_items.append(data.count(item))
     return item_types, count_items
 
 
