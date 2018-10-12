@@ -2,6 +2,7 @@
 
 # Começando com os imports
 import csv
+import sys
 import matplotlib.pyplot as plt
 
 # Vamos ler os dados como uma lista
@@ -14,6 +15,7 @@ try:
         print("Ok!")
 except Exception as ex:
     print("Ocorreu um erro inexperado na leitura do arquivo!", ex)
+    sys.exit()
 
 # Vamos mudar o data_list para remover o cabeçalho dele.
 data_list = data_list[1:]
